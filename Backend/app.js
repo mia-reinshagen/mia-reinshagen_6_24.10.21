@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require("helmet"); // pour sécuriser la page
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -16,6 +17,8 @@ mongoose.connect('mongodb+srv://Happy123:Happy123@cluster0.14vtg.mongodb.net/Hap
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 const app = express();
+
+app.use(helmet());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
